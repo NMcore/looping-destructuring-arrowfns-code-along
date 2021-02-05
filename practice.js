@@ -27,7 +27,8 @@ Inside this loop, change the value of each property to 0
 
 function objectLooper(number) {
     for (let key in number) {
-        // Code here
+        
+        number[key] = 0
     }
     return number;
 };
@@ -51,7 +52,9 @@ If a value is greater than 3,000,000 set it to 0
 
 function stateLooper(obj) {
 	for (let key in obj) {
-		// Code here
+		if(obj[key] > 3000000 ){
+            obj[key] = 0
+        }
 	}
 	return obj;
 };
@@ -66,9 +69,14 @@ Once all falsy values and their properties are removed, return the object
 */
 
 function cleanUser(obj) {
-    // Code here
+    for (var prop in obj) {
+        if(!obj[prop]) {
+            delete obj[prop];
+        }
+        
+    }
+    return obj
 };
-
 
 ////////// PROBLEM 4 //////////
 
@@ -78,8 +86,12 @@ Return the updated user object
 */
 
 // Code here
-
-
+function maxedOut(obj) {
+    for (var prop in obj) {
+        obj[ prop ] = "max";
+    }
+    return obj
+};
 
 ////////// OBJECT DESTRUCTURING //////////
 
@@ -116,7 +128,8 @@ Destructure this object so that you have 3 distinct variables with values matchi
 */
 
 // Code here
-
+const {cats, dogs, mice} = animalCount;
+// console.log(animalCount)
 
 
 ////////// PROBLEM 6 //////////
@@ -136,7 +149,7 @@ Set the value of students to be 24, mentors to be 3, and instructors to be 5
 */
 
 // Code here
-
+const {students, mentors, instructors} = {students: 24, mentors: 3, instructors: 5}
 
 
 ////////// PROBLEM 7 //////////
@@ -148,7 +161,15 @@ Use destructuring to assign the values of these properties to new variables
 */
 
 // Code here
-
+let languages = {
+    french,
+    english,
+    spanish
+} = {
+    french: false,
+    english: true,
+    spanish: false,
+}
 
 
 ////////// PROBLEM 8 //////////
@@ -183,7 +204,11 @@ Subtract num2 from num1 and return the result
 */
 
 // Code here
-
+const subtraction = (object) => {
+  const {num1, num2} = object;
+  const total = num1 - num2;
+  return total
+}
 
 
 ////////// PROBLEM 9 //////////
@@ -196,7 +221,13 @@ Using object destructuring, return the total sum of the counts of these animals
 */
 
 // Code here
-
+const zooAnimals = (object) => {
+    const {lion, tiger, bear} = object;
+    const total = lion + tiger + bear;
+    // console.log(total) confused here
+    return total
+  }
+  
 
 
 ////////// PROBLEM 10 //////////
@@ -225,7 +256,9 @@ Title and name in this sentence should be replaced with the values of the destru
 */
 
 // Code here
-
+const greeting = ({name, title}) => {
+  return `Hello, ${title} ${name}!`
+}
 
 
 ////////// PROBLEM 11 //////////
@@ -238,7 +271,14 @@ Return the value that is truthy
 */
 
 // Code here
-
+const truthyFalsy = ({number, string}) => {
+    if (number) {
+        return number 
+    } else {
+        return string
+    }
+  }
+  
 
 
 ////////// PROBLEM 12 //////////
@@ -252,6 +292,7 @@ Your function should also be contained within a single line
 */
 
 // Code here
+const isGreaterThanTwenty = arr => (arr > 20 ? true : false);
 
 
 
@@ -265,7 +306,7 @@ Your function should also be contained within a single line
 */
 
 // Code here
-
+const seven = () => 7;
 
 
 ////////// PROBLEM 14 //////////
@@ -283,6 +324,7 @@ function add(num1, num2) {
     return num1 + num2;
 };
 
+
 function subtract(num1, num2) {
     return num1 - num2;
 };
@@ -293,7 +335,9 @@ function double(num) {
 */
 
 // Code here
-
+const add = (num1, num2) => num1 + num2;
+const subtract = (num1, num2) => num1 - num2;
+const double = (num) => num * 2;
 
 
 ////////// PROBLEM 15 //////////
@@ -306,7 +350,7 @@ You should not use the ES5 function declaration or function expression syntax in
 */
 
 // Code here
-
+const multiply = (num1, num2) => num1 * num2;
 
 
 ////////// PROBLEM 16 //////////
@@ -319,7 +363,7 @@ You should not use the ES5 function declaration or function expression syntax in
 */
 
 // Code here
-
+const concatenate = (str1,str2) => str1 + str2;
 
 
 ////////// PROBLEM 17 //////////
@@ -333,8 +377,13 @@ You should not use the ES5 function declaration or function expression syntax in
 */
 
 // Code here
-
-
+let gemInfo = (gemType, gemSize, gemWeight) => {
+    return {
+        gemType:gemType,
+        gemSize:gemSize,
+        gemWeight:gemWeight
+    }
+}
 
 ////////// PROBLEM 18 //////////
 
@@ -360,6 +409,11 @@ let jobs = [
 
 // Code here
 
+let identifier = () => {
+  //let newArray = jobs.filter(x => ({programmer}) )
+  let newArray = jobs.filter(x => x.programmer)[0];
+  return newArray
+};
 
 
 ////////// PROBLEM 19 //////////
@@ -375,8 +429,8 @@ You should not use a for loop, but should use the filter method instead
 
 // Code here
 
-
-
+var evens = (arr) => arr.filter(i => i % 2 == 0);
+// evens(Array)
 ////////// PROBLEM 20 //////////
 
 /*
@@ -392,6 +446,31 @@ You should not use a for loop, but should use the filter method instead
 
 // Code here
 
+// let startWithLetterA = array => {
+
+//     console.log(array)
+//     let newArrayA = array.filter(x => x === 'a')[0];
+//     return newArrayA
+//   };
+
+//var startWithLetterA = (array) => arr.filter(i => i (array[0].toLowerCase().includes('a')));
+
+// let startWithLetterA = (array) => {
+//     return array[0].toLowerCase().includes('a')
+// };
+
+
+const startWithLetterA = array => {
+    let namesA = array.filter( (val) => {
+        return val[0].toLowerCase().includes('a')
+    });
+    return namesA
+}
+
+
+// let startWithLetterA = array.filter( (array, i, arr)  => {
+//     return val.slice(0,1)    
+//   });
 
 
 ////////// PROBLEM 21 //////////
@@ -403,8 +482,12 @@ Make sure to use arrow functions combined with the map method
 
 */
 
+
 const formalGreeting = names => {
-    // Code here
+    let newArray = names.map( (val) => {
+        return "Hello, " + val
+    });
+    return newArray
 }
 
 
@@ -417,7 +500,9 @@ and return the product of all the numbers in the array
 Make sure to use arrow functions combined with the reduce method    
 
 */
-
+//NM CLUELESS HERE AS TO WHY IT WANTED * and not +
 const productOfArray = numbers => {
-    // Code here
+    console.log(numbers)
+    let numReduce = numbers.reduce((acc, element, index, array) => acc * element);
+    return numReduce
 }
